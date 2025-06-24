@@ -1,10 +1,10 @@
-require('dotenv').config();                // Load environment variables
+require("dotenv").config(); // Load environment variables
 const express = require("express");
 const cors = require("cors");
 
 const app = express();
 
-const connectDb = require("./utils/db");   // DB connection
+const connectDb = require("./utils/db"); // DB connection
 const router = require("./router/auth-router");
 const contactRoute = require("./router/contact-router");
 const adminRoute = require("./router/admin-router");
@@ -12,7 +12,10 @@ const errorMiddleware = require("./middlewares/error-middleware");
 
 // === CORS Setup ===
 const corsOptions = {
-  origin: "http://localhost:5173",
+  origin: [
+    "https://panel-station-frontend.onrender.com",
+    "http://localhost:5173",
+  ],
   methods: "GET, PUT, POST, PATCH, HEAD, DELETE",
   credentials: true,
 };
@@ -29,7 +32,7 @@ app.use("/admin", adminRoute);
 app.use(errorMiddleware);
 
 // === Port Setup ===
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT;
 
 // === Start Server ===
 connectDb().then(() => {
