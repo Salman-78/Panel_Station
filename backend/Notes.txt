@@ -1,0 +1,855 @@
+lecture-01
+Introduction
+============================================================
+
+lecture-02
+project overview
+
+============================================================
+
+lecture-03
+create a server using express
+
+==> server.js
+const express = require("express");
+const app = express();
+
+app.get("/", (req, res) => {
+  res.status(200).send("Welcome to thapa technical Mern Series Updated");
+});
+
+app.get("/register", (req, res) => {
+  res.status(200).json({ msg: "registration successful" });
+});
+
+const PORT = 5000;
+app.listen(PORT, () => {
+  console.log(`server is running at port: ${PORT}`);
+});
+
+============================================================
+
+lecture-04
+express router
+
+==> server.js
+const express = require("express");
+const app = express();
+const router = require("./routes/auth-route");
+
+app.use("/", router);
+
+const PORT = 5000;
+app.listen(PORT, () => {
+  console.log(`server is running at port: ${PORT}`);
+});
+
+-------------------------------------------
+
+==> router → auth-router.js 
+
+const express = require("express");
+const router = express.Router();
+
+app.get("/", (req, res) => {
+ res.status(200).send("Home page");
+});
+
+app.get("/register", (req, res) => {
+ res.status(200).send("Register page");
+});
+
+router.route("/register").get((req, res) => {
+  res.status(200).send("This is same as above Register page");
+});
+
+module.exports = router
+
+============================================================
+
+lecture-05
+controllers in express js
+
+==> server.js
+const express = require("express");
+const app = express();
+const router = require("./routes/auth-route");
+
+app.use("/", router);
+
+const PORT = 5000;
+app.listen(PORT, () => {
+  console.log(`server is running at port: ${PORT}`);
+});
+
+------------------------------------------------
+
+==> router → auth-router.js 
+const express = require("express");
+const router = express.Router();
+const authControllers = require("../controllers/auth-controller");
+
+router.route("/").get(authControllers.home);
+router.route("/register").get(authControllers.register);
+
+module.exports = router;
+
+---------------------------------------------------------
+
+==> controllers → auth-controller.js
+const home = async (req, res) => {
+  try {
+    res.status(200).json({ msg: "Welcome to our home page" });
+  } 
+  catch (error) {
+    console.log(error);
+  }
+};
+const register = async (req, res) => {
+  try {
+    res.status(200).send({ message: "registration page" });
+  } 
+  catch (error) {
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+module.exports = { home, register };
+
+
+============================================================
+lecture-06
+User Registration in Express.js with Postman
+
+==> controllers → auth-controller.js
+
+const register = async (req, res) => {
+  try {
+    const data = req.body;
+    console.log(req.body);
+    // res.status(201).json({ message: "User registered successfully" });
+    res.status(200).json({ msg: data });
+  } 
+  catch (error) {
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+module.exports = { home, register };
+
+***Postman->WorkSpace->Collection->Request***
+
+============================================================
+lecture-07
+Connecting Backend with MongoDB Database 
+Organization-->Project-->cluster-->database-->collection-->document
+
+==> utils → db.js
+const mongoose = require("mongoose");
+
+const URI = "mongodb://127.0.0.1:27017/mern_admin_panel";
+
+const connectDb = async () => {
+  try {
+    await mongoose.connect(URI);
+    console.log("connection successful to DB");
+  } catch (error) {
+    console.error("database connection fail");
+    process.exit(0);
+  }
+};
+
+module.exports = connectDb;
+---------------------------------
+==> server.js
+const express = require("express");
+const app = express();
+const router = require("./routes/auth-route");
+const connectDb = require("./utils/db");
+
+// Mount the Router: To use the router in your main Express app, you can "mount" it at a specific URL prefix
+app.use("/api/auth", router);
+
+const PORT = 5000;
+
+connectDb().then(() => {
+  app.listen(PORT, () => {
+    console.log(`server is running at port: ${PORT}`);
+  });
+});
+============================================================
+lecture-08
+Securing Your Private Data with Dotenv in our Backend App
+==> server.js
+
+require("dotenv").config();
+
+const express = require("express");
+const app = express();
+const router = require("./routes/auth-route");
+const connectDb = require("./utils/db");
+
+// Mount the Router: To use the router in your main Express app, you can "mount" it at a specific URL prefix
+app.use("/api/auth", router);
+
+const PORT = 5000;
+
+connectDb().then(() => {
+  app.listen(PORT, () => {
+    console.log(`server is running at port: ${PORT}`);
+  });
+});
+------------------------------------------
+==> utils → db.js
+
+const mongoose = require("mongoose");
+
+// const URI = "mongodb://127.0.0.1:27017/mern_admin_panel";
+const URI = process.env.MONGODB_URI;
+console.log(URI);
+
+const connectDb = async () => {
+  try {
+    await mongoose.connect(URI);
+    console.log("connection successful to DB");
+  } catch (error) {
+    console.error("database connection fail");
+    process.exit(0);
+  }
+};
+
+module.exports = connectDb;
+============================================================
+lecture-09
+Creating the User Schema & Model for User Registration in our MERN App
+
+==> models → user-model.js
+const mongoose = require("mongoose");
+
+// Define the User schema
+const userSchema = new mongoose.Schema({
+  username: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+  },
+  phone: {
+    type: String,
+    required: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  isAdmin: {
+    type: Boolean,
+    default: false,
+  },
+});
+
+// define the model or the collection name
+export const User = new mongoose.model("USER", userSchema);
+====================================================================================================================================
+lecture-10
+Storing Registered User Data in an Online Database with Express and Mongoose
+
+==> server.js
+require('dotenv').config();
+const express = require("express");
+const app = express();
+const router = require("./router/auth-router");
+const connectDb = require("./utils/db");
+app.use(express.json());
+app.use("/", router);
+const PORT = 5000;
+connectDb().then(()=>{
+    app.listen(PORT, ()=>{
+        console.log("server.js chal raha hai");
+    })
+})
+--------------------------------------------------------------
+==> auth-router.js
+const express = require("express");
+const router = express.Router();
+const controller = require("../controllers/auth-controller")
+router.route("/").get(controller.home)
+router.route("/reg").post(controller.reg)
+module.exports = router;    
+-------------------------------------------------------------
+==> controllers/authControllers
+
+const User = require("../models/user-model");
+const home = async (req, res) => {
+  try {
+    const data = req.body;
+    console.log(data);
+    res.status(200).json({ message: data });
+  } 
+  catch (error) {
+    res.status(404).send("internal server errorr");
+  }
+};
+const reg = async (req, res) => {
+  try {
+    const { username, phone, email, password } = req.body;
+    const userExist = await User.findOne({ email });
+    if (userExist) {
+      res.status(400).json({ message: "Email alread exist" });
+    }
+    const temp = await User.create({ username, email, phone, password });
+    res.status(200).json({ message: temp });
+  } 
+  catch (error) {
+    res.status(404).send("internal server errorr");
+  }
+};
+module.exports = { home, reg };
+------------------------------------------
+==> db.js
+const mongoose = require("mongoose");
+const URI = process.env.MONGODB_URI;
+const connectDb = async () => {
+  try {
+    await mongoose.connect(URI);
+    console.log("database wala file chal raha h aur db se connect v ho gaya h");
+  } 
+  catch (error) {
+    console.error("DataBase connection failed")
+    process.exit(0);
+  }
+};
+module.exports = connectDb
+-------------------------------------
+==> .env
+MONGODB_URI = mongodb+srv://Salman-78:smd%40397452@cluster0.n3aba.mongodb.net/db_02?retryWrites=true&w=majority&appName=Cluster0
+
+---------------------------------------
+==> user-model.js
+const mongoose = require("mongoose");
+const userSchema = new mongoose.Schema({
+    username :{
+        type: String,
+        required: true,
+    },
+    email :{
+        type: String,
+        required: true,
+    },
+    phone :{
+        type: Number,
+        required: true,
+    },
+    
+    password :{
+        type: String,
+        required: true,
+    },
+    isAdmin :{
+        type: Boolean,
+        default: false,
+    },
+})
+const collection_01 = mongoose.model("collection_01", userSchema);
+module.exports = collection_01;
+
+===========================================================================================================================
+lecture-11
+Secure User Password using Bcrypt.js
+
+// hash the password
+const saltRound = 10;
+const hash_password = await bcrypt.hash(password, saltRound);
+
+await User.create({ username, email, password: hash_password });
+
+------------------------------------------------
+
+const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs");
+
+// Define the User schema
+const userSchema = new mongoose.Schema({
+  username: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+  },
+  phone: {
+    type: String,
+    required: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  isAdmin: {
+    type: Boolean,
+    default: false,
+  },
+});
+
+//? secure the password with the bcrypt
+userSchema.pre("save", async function () {
+  const user = this;
+  console.log("actual data ", this);
+
+  if (!user.isModified) {
+    return next();
+  }
+
+  try {
+    const saltRound = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(user.password, saltRound);
+    user.password = hashedPassword;
+  } catch (error) {
+    return next(error);
+  }
+});
+
+// define the model or the collection name
+const User = new mongoose.model("USER", userSchema);
+
+module.exports = User; 
+============================================================
+lecture-12
+Secure User Authentication with JSON Web Token (JWT) in our MERN App 
+
+const jwt = require("jsonwebtoken");
+
+//? Generate JSON Web Token
+userSchema.methods.generateToken = async function () {
+  console.log("I am token");
+  try {
+    return jwt.sign(
+      {
+        userId: this._id.toString(),
+        email: this.email,
+        isAdmin: this.isAdmin,
+      },
+      process.env.JWT_SECRET_KEY,
+      {
+        expiresIn: "30d",
+      }
+    );
+  } catch (error) {
+    console.error("Token Error: ", error);
+  }
+};
+-------------------------------------------------
+const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs");
+const { jwt } = require("jsonwebtoken");
+
+// Define the User schema
+const userSchema = new mongoose.Schema({
+  username: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+  },
+  phone: {
+    type: String,
+    required: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  isAdmin: {
+    type: Boolean,
+    default: false,
+  },
+});
+
+userSchema.pre("save", async function () {
+  const user = this;
+  console.log("actual data ", this);
+
+  if (!user.isModified) {
+    return next();
+  }
+
+  try {
+    const saltRound = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(user.password, saltRound);
+    user.password = hashedPassword;
+  } catch (error) {
+    return next(error);
+  }
+});
+
+userSchema.methods.generateToken = async function () {
+  console.log("I am token");
+  try {
+    return jwt.sign(
+      {
+        userId: this._id.toString(),
+        email: this.email,
+        isAdmin: this.isAdmin,
+      },
+      process.env.JWT_SECRET_KEY,
+      {
+        expiresIn: "30d",
+      }
+    );
+  } catch (error) {
+    console.error("Token Error: ", error);
+  }
+};
+
+//? define the model or the collection name
+const User = new mongoose.model("USER", userSchema);
+
+module.exports = User;
+
+---------------------------------------
+const userCreated = await User.create({ username, email, phone, password });
+
+// res.status(201).json({ message: "User registered successfully" });
+res.status(201).json({
+  msg: "Registration Successful",
+  token: await userCreated.generateToken(),
+  userId: userCreated._id.toString(),
+});
+-----------------------------------------------
+const User = require("../models/auth-model");
+const home = async (req, res) => {
+  try {
+    res.status(200).json({ msg: "Welcome to our home page" });
+  } catch (error) {
+    console.log(error);
+  }
+};
+const register = async (req, res) => {
+  try {
+    // const data = req.body;
+    console.log(req.body);
+    const { username, email, phone, password } = req.body;
+
+    const userExist = await User.findOne({ email: email });
+
+    if (userExist) {
+      return res.status(400).json({ msg: "email already exists" });
+    }
+
+    const userCreated = await User.create({ username, email, phone, password });
+
+    // res.status(201).json({ message: "User registered successfully" });
+    res.status(201).json({
+      msg: "Registration Successful",
+      token: await userCreated.generateToken(),
+      userId: userCreated._id.toString(),
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+module.exports = { home, register };
+============================================================
+lecture-13
+Building a Complete User Login Route with Functionality in Our MERN App
+
+  if (user) {
+      res.status(200).json({
+        message: "Login Successful",
+        token: await userExist.generateToken(),
+        userId: userExist._id.toString(),
+      });
+--------------------------------------------------
+
+const User = require("../models/auth-model");
+const bcrypt = require("bcryptjs");
+const home = async (req, res) => {
+  try {
+    res.status(200).json({ msg: "Welcome to our home page" });
+  } catch (error) {
+    console.log(error);
+  }
+};
+const register = async (req, res) => {
+  try {
+    // const data = req.body;
+    console.log(req.body);
+    const { username, email, phone, password } = req.body;
+
+    const userExist = await User.findOne({ email: email });
+
+    if (userExist) {
+      return res.status(400).json({ msg: "email already exists" });
+    }
+
+    const userCreated = await User.create({ username, email, phone, password });
+
+    // res.status(201).json({ message: "User registered successfully" });
+    res.status(201).json({
+      msg: "Registration Successful",
+      token: await userCreated.generateToken(),
+      userId: userCreated._id.toString(),
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+const login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    const userExist = await User.findOne({ email });
+
+    if (!userExist) {
+      return res.status(400).json({ message: "Invalid credentials" });
+    }
+
+    // const user = await bcrypt.compare(password, userExist.password);
+    const isPasswordValid = await userExist.comparePassword(password);
+
+    if (isPasswordValid) {
+      res.status(200).json({
+        message: "Login Successful",
+        token: await userExist.generateToken(),
+        userId: userExist._id.toString(),
+      });
+    } else {
+      res.status(401).json({ message: "Invalid email or passord " });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+module.exports = { home, register, login };
+------------------------------------------------------
+auth-model.js
+// comparePassword
+userSchema.methods.comparePassword = async function (password) {
+  return bcrypt.compare(password, this.password);
+};
+------------------------------------------------------
+auth-route.js
+const express = require("express");
+const router = express.Router();
+const authControllers = require("../controllers/auth-controller");
+
+router.route("/").get(authControllers.home);
+router.route("/register").post(authControllers.register);
+router.route("/login").post(authControllers.login);
+
+module.exports = router;
+============================================================
+lecture-14
+Our First MERN Series Challenge: Building a Custom Compare Password Check Function 
+
+============================================================
+lecture-15
+Registration & Login Form Validation using ZOD 
+
+Zod Schema
+// <https://github.com/colinhacks/zod>
+
+const { z } = require("zod");
+
+// Creating an object schema
+const signupSchema = z.object({
+  username: z
+    .string({ required_error: "Name is required" })
+    .trim()
+    .min(3, { message: "Name must be at least of 3 characters" })
+    .max(255, { message: "Name must not be more than 255 characters" }),
+  email: z
+    .string({ required_error: "Email is required" })
+    .trim()
+    .email({ message: "Invalid email address" })
+    .min(3, { message: "Email must be at least of 3 characters" })
+    .max(255, { message: "Email must not be more than 255 characters" }),
+  phone: z
+    .string({ required_error: "Phone is required" })
+    .trim()
+    .min(10, { message: "Phone must be at least of 10 characters" })
+    .max(20, { message: "Phone must not be more than 20 characters" }),
+  password: z
+    .string({ required_error: "Password is required" })
+    .min(7, { message: "Password must be at least of 6 characters" })
+    .max(1024, "Password can't be greater than 1024 characters"),
+});
+
+module.exports = signupSchema; 
+--------------------------------------------------------------
+validate-middleware.js
+const validate = (schema) => async (req, res, next) => {
+  try {
+    const parseBody = await schema.parseAsync(req.body);
+    req.body = parseBody;
+    return next();
+  } catch (err) {
+    const status = 422;
+    const message = "Fill the input properly";
+    const extraDetails = err.issues.map((curElem) => curElem.message);
+
+    const error = {
+      status,
+      message,
+      extraDetails,
+    };
+
+    next(extraDetails);
+  }
+};
+
+module.exports = validate;
+---------------------------------------------
+const express = require("express");
+const router = express.Router();
+const authControllers = require("../controllers/auth-controller");
+const validate = require("../middlewares/validate-middleware");
+const signupSchema = require("../validators/auth-validator");
+
+router.route("/").get(authControllers.home);
+router
+  .route("/register")
+  .post(validate(signupSchema), authControllers.register);
+router.route("/login").post(authControllers.login);
+
+module.exports = router;
+============================================================
+lecture-16
+Express.js Error Handling: A Deep Dive into Error Middleware Implementation in Our MERN App
+
+error-middleware.js
+const errorMiddleware = (err, req, res, next) => {
+  const status = err.status || 500;
+  const message = err.message || "Backend Error";
+  const extraDetails = err.extraDetails || "Error from the Backend";
+
+  console.error(
+    `[${req.method}]  ${req.path} >> StatusCode:: ${status}, Message:: ${extraDetails} `
+  );
+
+  return res.status(status).json({ message, extraDetails });
+};
+
+module.exports = errorMiddleware;
+-------------------------------------------
+require("dotenv").config();
+const express = require("express");
+const app = express();
+const router = require("./routes/auth-route");
+const connectDb = require("./utils/db");
+const errorMiddleware = require("./middlewares/error-middleware");
+
+// to get the json data in express app.
+app.use(express.json());
+
+// Mount the Router: To use the router in your main Express app, you can "mount" it at a specific URL prefix
+app.use("/api/auth", router);
+
+app.use(errorMiddleware);
+
+const PORT = 5000;
+connectDb().then(() => {
+  app.listen(PORT, () => {
+    console.log(`server is running at port: ${PORT}`);
+  });
+});
+============================================================
+lecture-17
+Building Complete Contact Form (Schema, Route & Logics) for Backend in our MERN App
+
+1: We need to create a Contact Schema and Model
+const { Schema, model } = require("mongoose");  
+const contactSchema = new Schema({ username: { type: String, required: true }, email: { type: String, required: true },  
+ message: { type: String, required: true }, }); 
+ // create a new collections(Model) 
+const Contact = new model("Contact", contactSchema); module.exports = Contact;  
+
+-------------------------------------------
+
+2: We need to create the contact route.
+
+const express = require("express");
+const router = express.Router();
+const contactForm = require("../controllers/contact-controller");
+router.route("/contact").post(contactForm);
+module.exports = router;
+
+-------------------------------------------
+
+3: We need to define the logics of contact in our Contact-controller.js file
+
+const Contact = require("../models/contact-model");
+const contactForm = async (req, res) => {
+  try {
+    const response = req.body;
+    await Contact.create(response);
+    return res.status(200).json({ message: "message send successfully" });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "message not delivered" });
+  }
+};
+module.exports = contactForm;
+
+
+-------------------------------------------
+
+4: Add the contact route in our server.js file
+
+require("dotenv").config();
+const express = require("express");
+const app = express();
+const router = require("./routes/auth-route");
+const connectDb = require("./utils/db");
+const errorMiddleware = require("./middlewares/error-middleware");
+const contactRoute = require("./routes/contact-route");
+
+// to get the json data in express app.
+app.use(express.json());
+
+// Mount the Router: To use the router in your main Express app, you can "mount" it at a specific URL prefix
+app.use("/api/auth", router);
+app.use("/api/form", contactRoute);
+
+app.use(errorMiddleware);
+
+const PORT = 5000;
+connectDb().then(() => {
+  app.listen(PORT, () => {
+    console.log(`server is running at port: ${PORT}`);
+  });
+});
+
+============================================================
+
+lecture-18
+============================================================
+frontend
+============================================================
+lecture-19
+Installing React.js with Vite for Frontend Development
+
+============================================================
+
+
+
+
+nodemon server.js
+install node, nodemon, express, mongoose, dotenv, mongodb
+"start" : nodemon server.js
+
+
+200 (OK): For successful API requests.
+201 (Created): When new resources (e.g., a user or resume) are created.
+400 (Bad Request): For invalid client inputs (e.g., missing fields in a form).
+401 (Unauthorized): For failed authentication.
+403 (Forbidden): When a user tries to access resources they don’t have permissions for.
+404 (Not Found): When a requested resource is not found.
+500 (Internal Server Error): For unexpected server-side errors.

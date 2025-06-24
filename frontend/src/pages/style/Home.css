@@ -1,0 +1,9 @@
+.welcome-message {
+  font-size: 2.5rem;
+  color: #00b894;
+  margin-bottom: 0.5rem;
+}
+
+.hero-content p strong {
+  color: dodgerblue;
+}

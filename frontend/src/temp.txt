@@ -1,0 +1,148 @@
+:root {
+  --bg-color-light: #f4f3ff;
+  --text-color-light: #242424;
+  --btn-color-light: #646cff;
+  --btn-secondary-color-light: transparent;
+  --placeholder-color-light: #000000;
+
+  --bg-color-dark: #121212;
+  --text-color-dark: #ffffff;
+  --btn-color-dark: #90caf9;
+  --btn-secondary-color-dark: transparent;
+  --placeholder-color-dark: #999999;
+}
+
+body {
+  background-color: var(--bg-color-light);
+  color: var(--text-color-light);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Dark mode styles */
+body.dark-mode {
+  background-color: var(--bg-color-dark);
+  color: var(--text-color-dark);
+}
+
+/* General container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Buttons */
+button {
+  padding: 1rem 2rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+  border-radius: 0.8rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+button.btn {
+  background-color: var(--btn-color-light);
+  color: #fff;
+}
+
+body.dark-mode button.btn {
+  background-color: var(--btn-color-dark);
+}
+
+button.secondary-btn {
+  background-color: var(--btn-secondary-color-light);
+  color: var(--btn-color-light);
+  border: 2px solid var(--btn-color-light);
+}
+
+body.dark-mode button.secondary-btn {
+  background-color: var(--btn-secondary-color-dark);
+  color: var(--btn-color-dark);
+  border: 2px solid var(--btn-color-dark);
+}
+
+/* Placeholder styling */
+input::placeholder, textarea::placeholder {
+  color: var(--placeholder-color-light);
+  transition: color 0.3s;
+}
+
+body.dark-mode input::placeholder, body.dark-mode textarea::placeholder {
+  color: var(--placeholder-color-dark);
+}
+
+/* Grid layout */
+.grid {
+  display: grid;
+  gap: 2rem;
+}
+
+.grid-two-cols {
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+
+.grid-four-cols {
+  grid-template-columns: repeat(4, 1fr);
+  text-align: center;
+}
+
+/* Hero section */
+.section-hero .hero-content {
+  padding: 2rem;
+}
+
+.section-hero .hero-content h1 {
+  font-size: 3.6rem;
+  margin: 1.2rem 0;
+}
+
+.section-hero .hero-content p {
+  font-size: 1.6rem;
+  margin-bottom: 2rem;
+}
+
+.section-hero .hero-image img {
+  max-width: 100%;
+  border-radius: 0.8rem;
+}
+
+/* Analytics section */
+.section-analytics {
+  margin: 4rem 0;
+  padding: 2rem;
+  background-color: var(--bg-color-light);
+  border-radius: 1rem;
+  transition: background-color 0.3s;
+}
+
+body.dark-mode .section-analytics {
+  background-color: var(--bg-color-dark);
+}
+
+.section-analytics .div1 {
+  padding: 1rem;
+}
+
+.section-analytics .div1 h2 {
+  font-size: 2.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.section-analytics .div1 p {
+  font-size: 1.4rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+

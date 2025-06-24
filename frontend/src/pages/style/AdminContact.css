@@ -1,0 +1,76 @@
+/* Main section */
+.cls01 {
+  padding: 2rem 1rem;
+  background-color: #f4f4f4;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Heading */
+.cls02 {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+/* Container grid */
+.cls03 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* Each contact card */
+.cls04 {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.cls04:hover {
+  transform: translateY(-5px);
+}
+
+/* Text fields */
+.cls05 {
+  margin: 0.5rem 0;
+  color: #444;
+  font-size: 1rem;
+}
+
+/* Delete button */
+.cls06 {
+  margin-top: 1rem;
+  padding: 0.5rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #e74c3c;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cls06:hover {
+  background-color: #c0392b;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  .cls02 {
+    font-size: 2rem;
+  }
+
+  .cls05 {
+    font-size: 0.95rem;
+  }
+
+  .cls06 {
+    width: 100%;
+  }
+}

@@ -1,0 +1,87 @@
+.about-hero-content {
+  font-family: "Arial", sans-serif;
+  color: var(--text-color);
+  line-height: 1.6;
+  margin: 0 auto;
+  padding: 20px;
+  max-width: 1000px;
+}
+
+.about-hero-content h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  color: var(--text-color);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.about-hero-content p {
+  font-size: 1.45rem;
+  margin-bottom: 15px;
+  color: var(--text-color);
+  text-align: justify;
+}
+
+
+.about-hero-content .about-btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.about-hero-content .primary-btn {
+  padding: 12px 26px;
+  font-size: 1.5rem;
+  background-color: var(--btn-color);
+  color: var(--text-color);
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+/* Analytics Section */
+.about-section-analytics {
+  margin: 9.6rem 0;
+  background-color: var(--bg-color);
+  background-color: var(--analyze-color);
+  padding: 4rem;
+  border-radius: 1rem;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.about-section-analytics .grid {
+  color: var(--text-color);
+}
+
+.about-section-analytics .div1 {
+  text-align: center;
+  border-right: 0.2rem solid var(--border-color);
+  padding-right: 30px;
+}
+
+.about-section-analytics .div1:last-child {
+  border-right: none;
+}
+
+.about-section-analytics .div1 h2 {
+  font-size: 4.8rem;
+}
+
+.about-section-analytics .div1 p {
+  text-transform: capitalize;
+}
+
+
+/* Primary Button */
+/* .primary-btn {
+  padding: 12px 25px;
+  font-size: 1rem;
+  background-color: var(--btn-color); 
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+} */
