@@ -7,7 +7,7 @@ import { Bounce, toast } from "react-toastify";
 export const AdminContact = () => {
   const [contactData, setContactData] = useState([]);
   const { authorizationToken } = useAuth();
-  const URL = "http://localhost:5000/admin/contact";
+  const URL = "https://panel-station-backend.onrender.com/admin/contact";
   const getAllContacts = async () => {
     try {
       const response = await fetch(URL, {
@@ -28,7 +28,7 @@ export const AdminContact = () => {
 
   const deleteContactById= async(id)=>{
     try {
-      const response = await fetch(`http://localhost:5000/admin/contact/delete/${id}`, {
+      const response = await fetch(`https://panel-station-backend.onrender.com/admin/contact/delete/${id}`, {
         method:"DELETE",
         headers:{
           Authorization:authorizationToken,

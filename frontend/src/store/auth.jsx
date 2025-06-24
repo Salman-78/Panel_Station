@@ -30,7 +30,7 @@ const AuthProvider = ({ children }) => { //2nd step provider
 
   //jwt authentication to get current user data
 
-  const URL ="http://localhost:5000/user";
+  const URL ="https://panel-station-backend.onrender.com/user";
 
   const userAuthentication= async()=>{
     try {
@@ -58,7 +58,7 @@ const AuthProvider = ({ children }) => { //2nd step provider
 
   const getServices= async ()=>{
     try {
-      const response = await fetch("http://localhost:5000/service", {
+      const response = await fetch("https://panel-station-backend.onrender.com/service", {
         method:"GET",
       })
       if(response.ok){

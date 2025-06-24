@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../store/auth";
 import { toast, Bounce } from "react-toastify";
 
-const URL = "http://localhost:5000/login";
+const URL = "https://panel-station-backend.onrender.com/login";
 export const Login = () => {
   const [user, setUer] = useState({
     email: "",

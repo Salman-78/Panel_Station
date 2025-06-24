@@ -5,7 +5,7 @@ import "./style/registration.css";
 import { toast, Bounce } from "react-toastify";
 
 export const Registration = () => {
-  const URL="http://localhost:5000/registration";
+  const URL="https://panel-station-backend.onrender.com/registration";
   const [user, setUer] = useState({
     username: "",
     email: "",

@@ -11,7 +11,7 @@ export const AdminUser = () => {
   // Assuming useAuth returns { token }
   const { authorizationToken } = useAuth();
 
-  const URL = "http://localhost:5000/admin/user";
+  const URL = "https://panel-station-backend.onrender.com/admin/user";
 
   const getAllUserData = async () => {
     try {
@@ -31,7 +31,7 @@ export const AdminUser = () => {
 
   const deleteUser = async(id)=>{
     try {
-      const response = await fetch(`http://localhost:5000/admin/user/delete/${id}`, {
+      const response = await fetch(`https://panel-station-backend.onrender.com/admin/user/delete/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: authorizationToken,

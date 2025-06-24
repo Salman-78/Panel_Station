@@ -10,7 +10,7 @@ const defaultForm={
 }
 
 export const Contact = () => {
-  const URL = "http://localhost:5000/contact";
+  const URL = "https://panel-station-backend.onrender.com/contact";
   const [contact, setContact] = useState(defaultForm);
   const [userData, setUserData]= useState(true);
 

@@ -21,7 +21,7 @@ export const AdminUpdate = () => {
   // ✅ Fetch single user data
   const getSingleUserData = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/admin/user/${params.id}`, {
+      const response = await fetch(`https://panel-station-backend.onrender.com/admin/user/${params.id}`, {
         method: "GET",
         headers: {
           Authorization: authorizationToken,
@@ -54,7 +54,7 @@ export const AdminUpdate = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`http://localhost:5000/admin/user/update/${params.id}`, {
+      const response = await fetch(`https://panel-station-backend.onrender.com/admin/user/update/${params.id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
