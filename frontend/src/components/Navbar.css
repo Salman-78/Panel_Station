@@ -85,4 +85,21 @@ body {
     background-color: var(--text-color);
     color: var(--bg-color);
   }
-  
+  .adminBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 10px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 3px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+.adminBtn:hover {
+  background: rgb(59, 163, 59);
+}

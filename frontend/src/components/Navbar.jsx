@@ -1,11 +1,11 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "./Navbar.css";
 import { useState } from "react";
 import { useAuth } from "../store/auth";
 
 export const Navbar = () => {
   const [darkMode, setDarkMode] = useState(false);
-  const {isLoggedIn}=useAuth();
+  const { isLoggedIn } = useAuth();
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
@@ -36,9 +36,14 @@ export const Navbar = () => {
               </li>
 
               {isLoggedIn ? (
-                <li>
-                  <NavLink to="/logout"> Logout </NavLink>
-                </li>
+                <>
+                  <li>
+                    <NavLink to="/logout"> Logout </NavLink>
+                  </li>
+                  <Link to="/admin/user">
+                    <button className="adminBtn">Admin</button>
+                  </Link>
+                </>
               ) : (
                 <>
                   <li>
@@ -49,7 +54,6 @@ export const Navbar = () => {
                   </li>
                 </>
               )}
-              
             </ul>
           </nav>
           <button onClick={toggleDarkMode} className="dark-mode-toggle">
