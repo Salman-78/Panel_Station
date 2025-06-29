@@ -1,91 +1,91 @@
 /* Global Styles */
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    transition: background-color 0.3s, color 0.3s;
-  }
-  
-  .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-  }
-  
-  header {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s;
-  }
-  
-  .logo-brand a {
-    text-decoration: none;
-    font-size: 1.7rem;
-    font-weight: bold;
-    color: var(--text-color);
-  }
-  
-  nav ul {
-    list-style: none;
-    display: flex;
-    gap: 18px;
-    margin: 0;
-    padding: 0;
-  }
-  
-  nav ul li a {
-    text-decoration: none;
-    /* font-size: 1rem; */
-    font-size: 1.5rem;
-    color: var(--text-color);
-    transition: color 0.3s;
-  }
-  
-  nav ul li a:hover {
-    color: var(--accent-color);
-  }
-  
-  /* Light Mode Variables */
-  :root {
-    --bg-color: #ffffff;
-    --text-color: #333333;
-    --accent-color: #007bff;
-  }
-  
-  /* Dark Mode Variables */
-  body.dark-mode {
-    --bg-color: #121212;
-    --text-color: #ffffff;
-    --accent-color: #90caf9;
-  }
-  
-  header,
-  body {
-    background-color: var(--bg-color);
-    color: var(--text-color);
-  }
-  
-  nav ul li a.active {
-    color: var(--accent-color);
-    font-weight: bold;
-    text-decoration: underline;
-  }
+  margin: 0;
+  font-family: Arial, sans-serif;
+  transition: background-color 0.3s, color 0.3s;
+}
 
-  .dark-mode-toggle {
-    background-color: var(--accent-color);
-    color: var(--bg-color);
-    border: none;
-    padding: 8px 12px;
-    font-size: 1rem;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s, color 0.3s;
-  }
-  
-  .dark-mode-toggle:hover {
-    background-color: var(--text-color);
-    color: var(--bg-color);
-  }
-  .adminBtn {
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+}
+
+header {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+}
+
+.logo-brand a {
+  text-decoration: none;
+  font-size: 1.7rem;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 18px;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li a {
+  text-decoration: none;
+  /* font-size: 1rem; */
+  font-size: 1.5rem;
+  color: var(--text-color);
+  transition: color 0.3s;
+}
+
+nav ul li a:hover {
+  color: var(--accent-color);
+}
+
+/* Light Mode Variables */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #333333;
+  --accent-color: #007bff;
+}
+
+/* Dark Mode Variables */
+body.dark-mode {
+  --bg-color: #121212;
+  --text-color: #ffffff;
+  --accent-color: #90caf9;
+}
+
+header,
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+nav ul li a.active {
+  color: var(--accent-color);
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.dark-mode-toggle {
+  background-color: var(--accent-color);
+  color: var(--bg-color);
+  border: none;
+  padding: 8px 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.dark-mode-toggle:hover {
+  background-color: var(--text-color);
+  color: var(--bg-color);
+}
+.adminBtn {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -102,4 +102,100 @@ body {
 }
 .adminBtn:hover {
   background: rgb(59, 163, 59);
+}
+
+/* ============================
+   navbar.css
+============================= */
+@media (max-width: 1200px) {
+  nav ul {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 800px) {
+  nav ul li a {
+    font-size: 1.3rem;
+  }
+  .container .logo-brand {
+    font-size: 20px;
+  }
+  nav ul {
+    gap: 10px;
+  }
+}
+
+/* @media (max-width: 600px) {
+  nav ul {
+    flex-direction: column;
+    gap: 5px;
+  }
+  .container {
+    flex-direction: column;
+  }
+  .dark-mode-toggle{
+    margin-top: 5px;
+  }
+} */
+@media (max-width: 600px) {
+  .container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    flex-wrap: wrap;
+  }
+
+  .menu-toggle {
+    display: block;
+    font-size: 2.5rem;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+  }
+
+  .nav-menu {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .nav-menu.active {
+    display: flex;
+  }
+
+  .nav-menu ul {
+    flex-direction: column;
+    gap: 8px;
+    padding: 0;
+    margin: 0;
+  }
+
+  .nav-menu ul li {
+    width: 100%;
+  }
+
+  .nav-menu ul li a {
+    width: 100%;
+    display: block;
+    padding: 5px 20px;
+    text-align: left;
+  }
+
+  .adminBtn {
+    width: 100%;
+    margin-top: 5px;
+    padding: 10px 0;
+    font-size: 1.2rem;
+    text-align: center;
+  }
+  .dark-mode-toggle {
+    width: 93%;
+    padding: 10px 0;
+    font-size: 1.2rem;
+    margin: 0 19px;
+    text-align: center;
+  }
 }

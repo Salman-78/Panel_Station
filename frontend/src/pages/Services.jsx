@@ -11,8 +11,8 @@ export const Services = () => {
             <p>
               We offer a wide range of IT services tailored to meet your
               business needs. Whether you need software development, IT
-              infrastructure management, or consulting, we have the expertise
-              to help you succeed.
+              infrastructure management, or consulting, we have the expertise to
+              help you succeed.
             </p>
             <div className="services-btn-group">
               <NavLink to="/contact">
@@ -22,7 +22,12 @@ export const Services = () => {
           </div>
 
           <div className="services-hero-image">
-            <img src="/images/services.png" alt="services" width="500" height="500" />
+            <img
+              src="/images/services.png"
+              alt="services"
+              width="500"
+              height="500"
+            />
           </div>
         </div>
       </section>
@@ -33,8 +38,8 @@ export const Services = () => {
             <h2>Software Development</h2>
             <p>
               Custom software solutions to streamline your business processes
-              and enhance productivity. We create scalable and robust applications
-              tailored to your needs.
+              and enhance productivity. We create scalable and robust
+              applications tailored to your needs.
             </p>
           </div>
 

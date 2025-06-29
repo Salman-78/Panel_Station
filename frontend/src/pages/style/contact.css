@@ -125,4 +125,32 @@ body {
       padding: 20px;
     }
   }
-  
+  /* ============================
+   contact.css & registration.css
+============================= */
+@media (max-width: 1200px) {
+  h1.main-heading {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 800px) {
+  .section-contact .container,
+  .section-registration .container {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  form label,
+  form input,
+  .btn-submit {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 450px) {
+  .btn-submit {
+    padding: 10px;
+  }
+}

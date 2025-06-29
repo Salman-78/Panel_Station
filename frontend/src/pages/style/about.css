@@ -22,7 +22,6 @@
   text-align: justify;
 }
 
-
 .about-hero-content .about-btn-group {
   display: flex;
   justify-content: center;
@@ -72,16 +71,85 @@
 .about-section-analytics .div1 p {
   text-transform: capitalize;
 }
+.about-hero-image img {
+  margin-left: 50px;
+  width: 500px;
+  height: 500px;
+}
 
+/* ============================
+   about.css
+============================= */
+@media (max-width: 1200px) {
+  .about-hero-content h1 {
+    font-size: 2.6rem;
+  }
+  .about-hero-image img {
+    margin-left: 0px;
+  }
+  .about-hero-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 20px;
+  }
 
-/* Primary Button */
-/* .primary-btn {
-  padding: 12px 25px;
-  font-size: 1rem;
-  background-color: var(--btn-color); 
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
-} */
+  .about-hero-image img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 800px) {
+  .about-hero-content h1 {
+    font-size: 2.2rem;
+  }
+  .about-hero-image img {
+    width: 450px;
+    height: 450px;
+  }
+  .about-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .about-hero-content h1 {
+    font-size: 2rem;
+  }
+  .about-container {
+    grid-template-columns: 1fr;
+  }
+
+  .div1 h2 {
+    font-size: 1.2rem;
+  }
+
+  .div1 p {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 450px) {
+  .about-hero-content h1 {
+    font-size: 1.8rem;
+  }
+  .about-container {
+    grid-template-columns: 1fr;
+  }
+
+  .div1 h2 {
+    font-size: 0.5rem;
+  }
+  .about-btn-group .primary-btn {
+    font-size: 12px;
+    margin: 0;
+    padding: 10px 10px;
+  }
+  .about-btn-group .secondary-btn {
+    font-size: 12px;
+    margin: 0;
+    padding: 10px 10px;
+  }
+}

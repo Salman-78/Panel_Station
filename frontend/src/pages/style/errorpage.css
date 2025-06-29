@@ -74,3 +74,29 @@
     background: var(--btn-color);
     color: #fff;
   }
+  /* ============================
+   errorpage.css
+============================= */
+@media (max-width: 1200px) {
+  .content h2.header {
+    font-size: 16vw;
+  }
+}
+
+@media (max-width: 800px) {
+  .content h2.header {
+    font-size: 14vw;
+  }
+}
+
+@media (max-width: 600px) {
+  .content h2.header {
+    font-size: 12vw;
+  }
+}
+
+@media (max-width: 450px) {
+  .content h2.header {
+    font-size: 10vw;
+  }
+}

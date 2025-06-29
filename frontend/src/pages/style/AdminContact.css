@@ -74,3 +74,37 @@
     width: 100%;
   }
 }
+/* ============================
+   admincontact.css & adminuser.css
+============================= */
+@media (max-width: 1200px) {
+  .cls03 {
+    gap: 1.2rem;
+  }
+}
+
+@media (max-width: 800px) {
+  .cls02 {
+    font-size: 2.2rem;
+  }
+  .admin-user-section h1 {
+    font-size: 1.9rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .cls05 {
+    font-size: 0.9rem;
+  }
+  .admin-user table {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 450px) {
+  .cls06,
+  .admin-user button {
+    width: 100%;
+    font-size: 0.9rem;
+  }
+}

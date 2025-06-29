@@ -41,3 +41,29 @@
   color: #888;
 }
 
+/* ============================
+   app.css
+============================= */
+@media (max-width: 1200px) {
+  #root {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 800px) {
+  .card {
+    padding: 1.5em;
+  }
+}
+
+@media (max-width: 600px) {
+  .logo {
+    height: 4em;
+  }
+}
+
+@media (max-width: 450px) {
+  .card {
+    padding: 1em;
+  }
+}

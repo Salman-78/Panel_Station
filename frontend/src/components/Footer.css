@@ -13,3 +13,17 @@ footer p {
   margin: 0;
   font-size: 2rem; 
 }
+/* ============================
+   footer.css
+============================= */
+@media (max-width: 800px) {
+  footer p {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 450px) {
+  footer p {
+    font-size: 1.4rem;
+  }
+}
