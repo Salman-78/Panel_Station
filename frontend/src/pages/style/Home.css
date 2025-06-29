@@ -7,3 +7,10 @@
 .hero-content p strong {
   color: dodgerblue;
 }
+
+.hero-content h1 {
+  background: linear-gradient(to right, #0066ff, #00ff6a); /* Blue to Green */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+}
